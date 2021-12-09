@@ -3,6 +3,8 @@ body {
   text-align: center;
 }
 
+
+/* FONDO PRIMERA PANTALLA */
 #game-intro {
   margin: auto;
   background-image: url('../images/first-capture/first-image-pageload.jpg');
@@ -11,28 +13,31 @@ body {
   width: 1200px;
   height: 1200px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
+#game-intro {
+  padding: 10px 0px;
+  margin: auto;
+}
+
+#game-board {
+display: none;
+}
+
+
+/* BOTONES MENÚ PRINCIPAL */
 #game-buttons {
-  width: 40%;
-  height: 400px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.2);
   margin: 0 20px;
-  flex-direction: column;
+  flex-direction: row;
   padding: 0;
 }
 
-#game-intro p {
-  font-size: 18px;
-  font-family: "Verdana"
-}
-
-
-button {
+button.menu-selection {
   font-size: 30px;
   background-color: transparent;
   color: #fff;
@@ -40,39 +45,57 @@ button {
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   border: none;
   transition-duration: 0.5s; 
 }
 
-button:hover {
+button.menu-selection:hover {
   font-size: 35px;
   border: 3px solid #29FFE7;
   border-radius: 20px;
 }
 
-button:active {
+button.menu-selection:active {
   background-color:#29FFE7;
   color: #000;
 }
 
-button img {
+button.menu-selection img {
   width: 80px;
   margin-right: 5%;
 }
 
-#game-intro {
-    padding: 10px 0px;
-    margin: auto;
-}
 
-
-#game-board {
-  display: none;
-}
-
-
-#game-buttons button {
+#game-buttons button.menu-selection {
   margin: 10px auto;
   width: 80%;
+}
+
+
+
+/* PANEL ELEGIR COCHE */
+
+#car {
+  width: 300px;
+  height: 300px;
+  border-radius: 15px;
+  padding:20px;
+  margin: 20px;
+}
+
+#car-selection{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.my-car {
+  width: 150px;
+  height: auto;
 }

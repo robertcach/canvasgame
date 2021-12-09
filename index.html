@@ -10,11 +10,21 @@
   <body>
     <div id="game-intro">
       <div id="game-buttons">
-        <button id="car-button"><img src="./images/choose-car.png" alt="choose car">Choose car</button>
-        <button id="race-button"><img src="./images/choose-circuit.png" alt="choose circuit">Choose circuit</button>
-        <button id="start-button"><img src="./images/start-race.png" alt="star race">Start Game</button>
+        <button id="car-button" class="menu-selection"><img src="./images/choose-car.png" alt="choose car">Choose car</button>
+        <button id="race-button" class="menu-selection"><img src="./images/choose-circuit.png" alt="choose circuit">Choose circuit</button>
+        <button id="start-button" class="menu-selection"><img src="./images/start-race.png" alt="star race">Start Game</button>
       </div>
+    </div>
+    
+    <div id="car-selection">
+      <button id="close-car-selection">X</button>
       
+      <div id="car"></div>
+
+      <div>
+        <img src="./images/left-arrow.png" alt="left-button-car" class="arrow-button" id="left-button">
+        <img src="./images/right-arrow.png" alt="right-button-car" class="arrow-button" id="right-button">
+      </div>
     </div>
 
     <div id="game-board">
@@ -28,7 +38,10 @@
     <script type="text/javascript" src="js/models/puntuation-border.js"></script>
     <script type="text/javascript" src="js/models/background.js"></script>
     <script type="text/javascript" src="js/models/game.js"></script>
+    <script type="text/javascript" src="js/models/choose-car.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    
+    
     
   </body>
 </html>
