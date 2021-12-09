@@ -1,0 +1,60 @@
+body {
+  padding: 0;
+  text-align: center;
+}
+
+#game-intro {
+  margin: auto;
+  background-image: url('../images/first-capture/first-image-pageload.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 1200px;
+  height: 1200px;
+  display: flex;
+  align-items: center;
+}
+
+#game-buttons {
+  width: 30%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin: 0 50px;
+  flex-direction: column;
+  padding: 0;
+}
+
+#game-intro p {
+  font-size: 18px;
+  font-family: "Verdana"
+}
+
+
+button {
+  font-size: 30px;
+  background-color: #870007;
+  color: #fff;
+  padding: 20px 40px;
+  border: 0;
+  box-shadow: 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#game-intro {
+    padding: 10px 0px;
+    margin: auto;
+}
+
+
+#game-board {
+  display: none;
+}
+
+
+#game-buttons button {
+  /* margin: 10px auto; */
+  width: 80%;
+}
