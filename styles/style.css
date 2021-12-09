@@ -76,6 +76,26 @@ button.menu-selection img {
 
 /* PANEL ELEGIR COCHE */
 
+.selection-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  border: solid 4px #29FFE7;
+  border-radius: 20px;
+  box-shadow: 3px 3px 4px #fff;
+  padding: 50px 150px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.display-panel {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+
 #car {
   width: 300px;
   height: 300px;
@@ -84,18 +104,19 @@ button.menu-selection img {
   margin: 20px;
 }
 
-#car-selection{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
 .my-car {
   width: 150px;
   height: auto;
+}
+
+button#close-car-selection {
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  background-color: #29FFE7;
+  padding: 10px;
+  border: solid 4px #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 900;
 }

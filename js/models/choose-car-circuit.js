@@ -23,3 +23,15 @@ nextCar.onclick = () => {
 };
 
 renderCar();
+
+const carButton = document.getElementById('car-button');
+const closeButton = document.getElementById('close-car-selection')
+const carSelectionPanel = document.getElementById('car-selection');
+
+carButton.addEventListener('click', () => {
+  carSelectionPanel.classList.add('display-panel');
+});
+
+closeButton.addEventListener('click', () => {
+  carSelectionPanel.classList.remove('display-panel');
+});
