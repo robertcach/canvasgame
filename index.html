@@ -22,17 +22,31 @@
       </div>
     </div>
     
+    <!-- CAR PANEL SELECTION -->
     <div id="car-selection" class="selection-modal">
       <button id="close-car-selection">X</button>
       
       <div id="car"></div>
 
       <div>
-        <img src="./images/left-arrow.png" alt="left-button-car" class="arrow-button" id="left-button">
-        <img src="./images/right-arrow.png" alt="right-button-car" class="arrow-button" id="right-button">
+        <img src="./images/left-arrow.png" alt="left-button-car" class="arrow-button" id="left-button-car">
+        <img src="./images/right-arrow.png" alt="right-button-car" class="arrow-button" id="right-button-car">
       </div>
     </div>
 
+    <!-- CIRCUIT PANEL SELECTION -->
+    <div id="circuit-selection" class="selection-modal">
+      <button id="close-circuit-selection">X</button>
+      <div id="circuit"></div>
+
+      <div>
+        <img src="./images/left-arrow.png" alt="left-button-circuit" class="arrow-button" id="left-button-circuit">
+        <img src="./images/right-arrow.png" alt="right-button-circuit" class="arrow-button" id="right-button-circuit">
+      </div>
+    </div>
+
+
+    <!-- CANVAS GAME -->
     <div id="game-board">
       <canvas id="canvas" width="1200" height="1200"></canvas>
     </div>
@@ -46,8 +60,6 @@
     <script type="text/javascript" src="js/models/game.js"></script>
     <script type="text/javascript" src="js/models/choose-car-circuit.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
-    
-    
-    
+
   </body>
 </html>
