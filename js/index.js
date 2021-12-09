@@ -3,6 +3,8 @@ const canvasBoard = document.getElementById('game-board')
 const canvasImage = document.getElementById('game-intro')
 const ctx = canvas.getContext('2d');
 
+
+
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
     canvasImage.style.display = 'none';

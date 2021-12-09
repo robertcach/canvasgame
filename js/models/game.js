@@ -28,8 +28,6 @@ class Game {
           if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
             this.addObstacle();
             this.car.fuel -= 20;
-
-            
             
             this.obstacleFramesCount = 0 
           }
