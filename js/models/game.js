@@ -17,8 +17,6 @@ class Game {
 
         this.obstacleFramesCount = 0
         this.fuelsFramesCount = 0
-
-        this.score = 0
     }
 
     start() {
@@ -121,18 +119,22 @@ class Game {
       }
 
       checkCollissions() {
-        const conditionObstacle = this.obstacles.some(obstacle => this.car.collidesWith(obstacle))
-        const conditionFuel = this.fuels.some(fuel => this.car.collidesWith(fuel))
+        const conditionObstacle = this.obstacles.some(obstacle => this.car.collidesWithObstacle(obstacle));
+
+        const conditionFuel = this.fuels.find(fuel => this.car.collidesWithFuel(fuel));
     
         if (conditionObstacle) {
-          this.gameOver()
+          this.gameOver();
         }
 
         if (conditionFuel) {
-          this.car.fuel += 10;
-          this.continueGame()
-          
+          this.continueGame();
+
+          this.fuels = this.fuels.filter(fuel => fuel !== conditionFuel)
+          this.car.fuel += 25;      
         }
+
+
       }
 
       gameOver() {
@@ -158,8 +160,7 @@ class Game {
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
         this.ctx.fillText(`You got more fuel`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
-    
-        /* this.fuels.remove() */
+
         this.car.move()
         this.ctx.restore()  
       }

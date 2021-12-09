@@ -85,12 +85,12 @@ class Car {
       }
     }
 
-      collidesWith(something) {
+      collidesWithObstacle(obstacle) {
         if (
-          this.y < something.y + something.height &&
-          this.y + this.height > something.y &&
-          this.x < something.x + something.width &&
-          this.x + this.width > something.x 
+          this.y < obstacle.y + obstacle.height &&
+          this.y + this.height > obstacle.y &&
+          this.x < obstacle.x + obstacle.width &&
+          this.x + this.width > obstacle.x 
         ) {
           return true
         }
@@ -98,5 +98,17 @@ class Car {
         return false
       }
 
+      collidesWithFuel(fuel) {
+        if (
+          this.y < fuel.y + fuel.height &&
+          this.y + this.height > fuel.y &&
+          this.x < fuel.x + fuel.width &&
+          this.x + this.width > fuel.x 
+        ) {
+          return true
+        }
+    
+        return false
+      }
       
 }
