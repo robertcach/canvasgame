@@ -129,7 +129,7 @@ class Game {
         }
 
         if (conditionFuel) {
-          this.car.fuel += 100;
+          this.car.fuel += 10;
           this.continueGame()
           
         }
@@ -170,10 +170,6 @@ class Game {
         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`You got ${this.car.fuel}`, 90, 100)
-
-        if (this.car.fuel = 0) {
-          this.gameOver()
-        }        
+        this.ctx.fillText(`You got ${this.car.fuel}`, 90, 100)       
       }
 }
