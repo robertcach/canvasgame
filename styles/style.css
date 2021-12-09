@@ -107,6 +107,12 @@ button.menu-selection img {
   height: auto;
 }
 
+.my-car:hover {
+  -webkit-filter: drop-shadow(5px 5px 5px #fff );
+  filter: drop-shadow(5px 5px 5px #fff);
+}
+
+
 button#close-car-selection {
   position: absolute;
   top: -20px;

@@ -39,6 +39,15 @@ closeCarButton.addEventListener('click', () => {
 });
 
 
+const choosenCar = document.querySelector('#car');
+
+
+choosenCar.addEventListener('click', () => {
+  let myCar = document.querySelector('.my-car');
+  console.log(myCar);
+});
+
+
 
 
 /* CIRCUIT PANEL SELECTION */
