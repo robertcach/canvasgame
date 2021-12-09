@@ -17,6 +17,8 @@ class Game {
 
         this.obstacleFramesCount = 0
         this.fuelsFramesCount = 0
+
+        this.score = 0;
     }
 
     start() {
@@ -25,8 +27,11 @@ class Game {
 
           if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
             this.addObstacle();
+            this.car.fuel -= 20;
 
-            this.obstacleFramesCount = 0
+            
+            
+            this.obstacleFramesCount = 0 
           }
 
           if (this.fuelsFramesCount % FUELS_FRAMES === 0) {
@@ -42,13 +47,19 @@ class Game {
           this.draw()
 
           this.whitOutFuel()
-          this.checkCollissions()
+          this.checkCollissions()        
           
           this.obstacleFramesCount++
           this.fuelsFramesCount++
-      
+
+          if (this.car.fuel <= 0) {
+            this.gameOver();
+          }
+
           }, this.fps)
         }
+
+        
     }
 
     clear() {
@@ -88,7 +99,7 @@ class Game {
         this.obstacles.forEach(obstacle => obstacle.move()); 
         this.fuels.forEach(fuel => fuel.move());
         this.car.move();
-        this.background.move();
+        this.background.move();        
       }
 
       onKeyDown(keyCode) {
@@ -131,10 +142,8 @@ class Game {
           this.continueGame();
 
           this.fuels = this.fuels.filter(fuel => fuel !== conditionFuel)
-          this.car.fuel += 25;      
+          this.car.fuel += 75;      
         }
-
-
       }
 
       gameOver() {
@@ -171,6 +180,6 @@ class Game {
         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`You got ${this.car.fuel}`, 90, 100)       
+        this.ctx.fillText(`You got ${this.car.fuel}`, 90, 100);
       }
 }

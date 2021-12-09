@@ -48,8 +48,7 @@ class Car {
               this.width,
               this.height,
             )
-        
-            /* this.fuel -= 100;  */    
+
         /* this.tick++; */
         this.ctx.restore()
     }
@@ -62,7 +61,7 @@ class Car {
       }
       if (this.x + this.width >= this.ctx.canvas.width) {
         this.x = this.ctx.canvas.width - this.width
-      }
+      } 
     }
 
     onKeyDown(keyCode) {
