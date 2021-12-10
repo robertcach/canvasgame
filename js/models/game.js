@@ -1,6 +1,8 @@
 const OBSTACLE_FRAMES =  120
 const FUELS_FRAMES =  360
 
+
+
 class Game {
     constructor(ctx) {
         this.ctx = ctx;
@@ -27,19 +29,20 @@ class Game {
         this.driftSound.volume = 0.2;
 
         this.pickUpFuel = new Audio('/sounds/pick-up-fuel.wav');
-        this.pickUpFuel.volume = 0.4;
+        this.pickUpFuel.volume = 0.3;
 
         this.carCrash = new Audio('/sounds/car-crash.wav');
-        this.carCrash.volume = 0.2;
+        this.carCrash.volume = 0.2;      
     }
 
     start() {
       if (!this.intervalId) {
         this.intervalId = setInterval(() => {
+          
 
           if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
             this.addObstacle();
-            this.car.fuel -= 20;
+            this.car.fuel -= 2;
             
             this.obstacleFramesCount = 0 
           }
@@ -89,21 +92,21 @@ class Game {
     
       draw() {
         this.background.draw();
-        /* this.puntuationBoder.draw(); */
+        
         this.obstacles.forEach(obstacle => obstacle.draw());
         this.fuels.forEach(fuel => fuel.draw());
         this.car.draw();
-
+        this.puntuationBoder.draw();
         this.drawScore()
       }
 
       drawScore() {
         this.ctx.save();
     
-        this.ctx.fillStyle = 'white';
-        this.ctx.font = ' bold 24px sans-serif';
+        this.ctx.fillStyle = 'black';
+        this.ctx.font = ' bold 32px sans-serif';
     
-        this.ctx.fillText(`Score: ${this.score} ptos`, 20, 40);
+        this.ctx.fillText(`${this.score}`, 50, 80);
     
         this.ctx.restore();
       }
@@ -158,17 +161,18 @@ class Game {
         if (conditionFuel) {
           this.pickUpFuel.currentTime = 0;
           this.pickUpFuel.play();
-          this.continueGame();
+          
 
           this.fuels = this.fuels.filter(fuel => fuel !== conditionFuel)
-          this.car.fuel += 75;      
+          this.car.fuel += 10;
+          this.continueGame();      
         }
       }
 
       gameOver() {
         clearInterval(this.intervalId)
     
-        this.ctx.save()
+        this.ctx.save();
         
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
@@ -186,11 +190,11 @@ class Game {
       continueGame() {
         this.ctx.save()
     
-        this.ctx.fillStyle = 'white'
+/*         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
         this.ctx.fillText(`You got more fuel`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
-
+ */
         this.car.move()
         this.ctx.restore()  
       }
@@ -198,9 +202,9 @@ class Game {
       whitOutFuel() {
         this.ctx.save();
 
-        this.ctx.fillStyle = 'white'
+        this.ctx.fillStyle = 'black'
         this.ctx.textAlign = 'center'
-        this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`You got ${this.car.fuel}`, 90, 100);
+        this.ctx.font = 'bold 32px sans-serif'
+        this.ctx.fillText(`${this.car.fuel}%`, 1090, 1135);
       }
 }

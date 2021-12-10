@@ -13,7 +13,7 @@ class Car {
         this.speed = 3;
         this.vx = 0;
         this.vy = 0;
-        this.fuel = 500;
+        this.fuel = 100;
 
         this.img = new Image();
         
