@@ -1,3 +1,5 @@
+/* import {carToGame} from "../models/choose-car-circuit.js"; */
+
 class Car {
     constructor(ctx, x, y) {
         this.ctx = ctx;
@@ -10,9 +12,11 @@ class Car {
 
         this.speed = 3;
         this.vx = 0;
+        this.vy = 0;
         this.fuel = 500;
 
         this.img = new Image();
+        
         this.img.src = '../images/cars/police-cars-sprite.png',
         this.img.isReady = false;
 
@@ -55,13 +59,23 @@ class Car {
 
     move() {  
       this.x += this.vx;
+      this.y += this.vy;
 
       if (this.x <= 0) {
-        this.x = 0
+        this.x = 0;
       }
+
       if (this.x + this.width >= this.ctx.canvas.width) {
-        this.x = this.ctx.canvas.width - this.width
-      } 
+        this.x = this.ctx.canvas.width - this.width;
+      }
+      
+      if (this.y >= 1050) {
+        this.y = 1050;
+      }
+
+      if (this.y <= 0) {
+        this.y = 0;
+      }
     }
 
     onKeyDown(keyCode) {
@@ -75,12 +89,29 @@ class Car {
         this.vx -= this.speed;
         this.xFrame = 0;
       }
+
+      if (keyCode === KEY_UP) {
+        this.vy -= this.speed;
+        this.xFrame = 2;
+      }
+
+      if (keyCode === KEY_DOWN) {
+        this.vy = this.speed;
+        this.xFrame = 0;
+      }
+
+
     }
     
     onKeyUp(keyCode) {
       if (keyCode === KEY_RIGHT || keyCode === KEY_LEFT) {
         this.xFrame = 1;
         this.vx = 0;
+      }
+
+      if (keyCode === KEY_UP || keyCode === KEY_DOWN) {
+        this.xFrame = 1;
+        this.vy = 0;
       }
     }
 

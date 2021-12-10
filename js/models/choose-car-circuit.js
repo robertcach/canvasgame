@@ -26,6 +26,7 @@ nextCar.onclick = () => {
 
 chooseCar();
 
+
 const carButton = document.getElementById('car-button');
 const closeCarButton = document.getElementById('close-car-selection')
 const carSelectionPanel = document.getElementById('car-selection');
@@ -39,15 +40,17 @@ closeCarButton.addEventListener('click', () => {
 });
 
 
-const choosenCar = document.querySelector('#car');
+function carChoosen() {
+  const choosenCar = document.querySelector('#car');
 
+  choosenCar.addEventListener('click', () => {
+    let myCar = document.querySelector('.my-car');
+    console.log(myCar);
+  });
+}
 
-choosenCar.addEventListener('click', () => {
-  let myCar = document.querySelector('.my-car');
-  console.log(myCar);
-});
-
-
+const carToGame = carChoosen();
+/* export const cadenaMayus = str => str.toUpperCase(); */
 
 
 /* CIRCUIT PANEL SELECTION */

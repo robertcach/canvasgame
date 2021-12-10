@@ -19,6 +19,18 @@ class Game {
         this.fuelsFramesCount = 0
 
         this.score = 0;
+        
+        this.raceBegin = new Audio('/sounds/race-background-sound.mp3');
+        this.raceBegin.volume = 0.3;
+
+        this.driftSound = new Audio('/sounds/drift.mp3');
+        this.driftSound.volume = 0.2;
+
+        this.pickUpFuel = new Audio('/sounds/pick-up-fuel.wav');
+        this.pickUpFuel.volume = 0.4;
+
+        this.carCrash = new Audio('/sounds/car-crash.wav');
+        this.carCrash.volume = 0.2;
     }
 
     start() {
@@ -50,6 +62,8 @@ class Game {
           this.obstacleFramesCount++
           this.fuelsFramesCount++
 
+          
+
           if (this.car.fuel <= 0) {
             this.gameOver();
           }
@@ -57,7 +71,8 @@ class Game {
           }, this.fps)
         }
 
-        
+        this.raceBegin.currentTime = 0;
+        this.raceBegin.play();
     }
 
     clear() {
@@ -102,6 +117,8 @@ class Game {
 
       onKeyDown(keyCode) {
         this.car.onKeyDown(keyCode)
+        this.driftSound.currentTime = 0
+        this.driftSound.play();
       }
     
       onKeyUp(keyCode) {
@@ -133,10 +150,14 @@ class Game {
         const conditionFuel = this.fuels.find(fuel => this.car.collidesWithFuel(fuel));
     
         if (conditionObstacle) {
+          this.carCrash.currentTime = 0;
+          this.carCrash.play();
           this.gameOver();
         }
 
         if (conditionFuel) {
+          this.pickUpFuel.currentTime = 0;
+          this.pickUpFuel.play();
           this.continueGame();
 
           this.fuels = this.fuels.filter(fuel => fuel !== conditionFuel)
@@ -157,7 +178,9 @@ class Game {
         this.ctx.font = 'bold 25px sans-serif'
         this.ctx.fillText(`Game Over! Your final score: ${this.score}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
     
-        this.ctx.restore()
+        this.raceBegin.pause();
+        this.driftSound.volume = 0;
+        this.ctx.restore();
       }
 
       continueGame() {
