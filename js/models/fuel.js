@@ -37,14 +37,4 @@ class Fuel {
     move() {
         this.y -= this.vy
     }
-
-    /* remove() {
-        this.ctx.save()
-
-        if (this.img.isReady = true) {
-            this.img.style.display = 'none';
-        }
-
-        this.ctx.restore()
-    } */
 }

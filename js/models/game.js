@@ -1,7 +1,7 @@
 const OBSTACLE_FRAMES =  120
 const FUELS_FRAMES =  360
 
-
+const restartGame = document.getElementById('start-button')
 
 class Game {
     constructor(ctx) {
@@ -21,6 +21,8 @@ class Game {
         this.fuelsFramesCount = 0
 
         this.score = 0;
+        
+        console.log(restartGame)
         
         this.raceBegin = new Audio('/sounds/race-background-sound.mp3');
         this.raceBegin.volume = 0.3;
@@ -130,13 +132,13 @@ class Game {
       }
 
       addObstacle() {
-        const xObstacle = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT)
+        const xObstacle = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT);
 
         this.obstacles.push(new Obstacle(this.ctx, xObstacle, -150));
       }
 
       addFuel() {
-        const xFuel = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT)
+        const xFuel = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT);
 
         this.fuels.push(new Fuel(this.ctx, xFuel, 0));
       }
@@ -175,15 +177,18 @@ class Game {
         
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+
     
         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`Game Over! Your final score: ${this.score}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
+        this.ctx.fillText(`Game Over! Your final score: ${this.score} ${restartGame}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
     
         this.raceBegin.pause();
         this.driftSound.volume = 0;
         this.ctx.restore();
+
+        
       }
 
       continueGame() {

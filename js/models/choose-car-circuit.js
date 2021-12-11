@@ -1,10 +1,9 @@
-/* CAR PANEL SELECTION */
-
-let countCar = 1;
+/* SLIDES CAR IMAGES */
+let countCar = 0;
 
 function chooseCar () {
   const carContainer = document.getElementById('car');
-  carContainer.innerHTML = `<img class="my-car" src="/images/cars/car-${countCar}.png">`;
+  carContainer.innerHTML = `<img class="my-car" id="${countCar}" src="/images/cars/car-${countCar}.png">`;
 }
 
 const prevCar = document.getElementById('left-button-car');
@@ -18,7 +17,7 @@ prevCar.onclick = () => {
 };
 
 nextCar.onclick = () => {
-  if (countCar < 4) {
+  if (countCar < 3) {
     countCar = countCar + 1;
     chooseCar();
   }
@@ -27,6 +26,8 @@ nextCar.onclick = () => {
 chooseCar();
 
 
+
+/* CHOOSE CAR TO GAME */
 const carButton = document.getElementById('car-button');
 const closeCarButton = document.getElementById('close-car-selection')
 const carSelectionPanel = document.getElementById('car-selection');
@@ -45,14 +46,18 @@ function carChoosen() {
 
   choosenCar.addEventListener('click', () => {
     let myCar = document.querySelector('.my-car');
-    console.log(myCar.getAttribute('src'));
+    console.log(myCar.getAttribute('id'));
+    document.getElementById('canvas').dataset.car = myCar.getAttribute('id')
   });
 }
 
-/* export const carToGame = carChoosen(); */
+carChoosen()
 
 
-/* CIRCUIT PANEL SELECTION */
+
+
+
+/* SLIDES CIRCUIT IMAGES */
 let countCircuit = 1;
 
 function chooseCircuit () {
@@ -79,6 +84,9 @@ nextCircuit.onclick = () => {
 
 chooseCircuit();
 
+
+
+/* CHOOSE CIRCUIT TO GAME */
 
 const raceButton = document.getElementById('race-button');
 const closeCircuitButton = document.getElementById('close-circuit-selection')

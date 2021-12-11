@@ -6,6 +6,7 @@ body {
 
 *, *:before, *:after {
   box-sizing: border-box;
+  margin: 0;
 }
 
 
@@ -21,6 +22,8 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  max-height: 100vh;
+  width: auto;
 }
 
 #game-intro {
@@ -30,6 +33,11 @@ body {
 
 #game-board {
 display: none;
+}
+
+#canvas {
+  max-height: 100vh;
+  width: auto;
 }
 
 #instruccions {

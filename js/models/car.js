@@ -1,8 +1,26 @@
-/* import {carToGame} from "../models/choose-car-circuit.js"; */
-
 class Car {
     constructor(ctx, x, y, carSelection) {
         this.ctx = ctx;
+
+        this.car = this.ctx.canvas.dataset.car
+        
+        this.carSelection = [
+          {id: 0,
+          src: '/images/cars/cars-0-sprite.png'
+          },
+          {
+            id: 1,
+            src: '/images/cars/cars-1-sprite.png'
+          },
+          {
+            id: 2,
+            src: '/images/cars/cars-2-sprite.png'
+          },
+          {
+            id: 3,
+            src: '/images/cars/cars-3-sprite.png'
+          }
+        ];
 
         this.x = x 
         this.y = y 
@@ -17,7 +35,7 @@ class Car {
 
         this.img = new Image();
         
-        this.img.src = '/images/cars/police-cars-sprite.png',
+        this.img.src = this.carSelection[this.car].src,
         this.img.isReady = false;
 
         this.img.onload = () => {

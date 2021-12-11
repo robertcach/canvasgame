@@ -5,13 +5,13 @@ class Obstacle {
         this.x = x
         this.y = y
         
-        this.width = 50
-        this.height = 103
+        this.width = 45
+        this.height = 92
 
         this.vy = -3
 
         this.img = new Image();
-        this.img.src = '../images/cars/car-2.png', 
+        this.img.src = '../images/cars/osbtacle.png', 
         this.img.isReady = false;
 
         this.img.onload = () => {
