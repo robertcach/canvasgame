@@ -1,7 +1,7 @@
 /* import {carToGame} from "../models/choose-car-circuit.js"; */
 
 class Car {
-    constructor(ctx, x, y) {
+    constructor(ctx, x, y, carSelection) {
         this.ctx = ctx;
 
         this.x = x 
@@ -17,7 +17,7 @@ class Car {
 
         this.img = new Image();
         
-        this.img.src = '../images/cars/police-cars-sprite.png',
+        this.img.src = '/images/cars/police-cars-sprite.png',
         this.img.isReady = false;
 
         this.img.onload = () => {
@@ -61,12 +61,12 @@ class Car {
       this.x += this.vx;
       this.y += this.vy;
 
-      if (this.x <= 0) {
-        this.x = 0;
+      if (this.x <= MAX_LEFT) {
+        this.x = MAX_LEFT;
       }
 
-      if (this.x + this.width >= this.ctx.canvas.width) {
-        this.x = this.ctx.canvas.width - this.width;
+      if (this.x >= MAX_RIGHT) {
+        this.x = MAX_RIGHT;
       }
       
       if (this.y >= 1050) {

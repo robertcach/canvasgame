@@ -6,9 +6,9 @@ const FUELS_FRAMES =  360
 class Game {
     constructor(ctx) {
         this.ctx = ctx;
-  
+        this.carSelection = this.ctx.canvas.dataset.car || 0;
         
-        this.car = new Car(ctx, 575, 1050);
+        this.car = new Car(ctx, 575, 1050, );
         this.background = new Background(ctx);
         this.puntuationBoder = new Puntuation(ctx);
         this.obstacles = []
@@ -36,6 +36,7 @@ class Game {
     }
 
     start() {
+      console.log(this.ctx.canvas.dataset.car)
       if (!this.intervalId) {
         this.intervalId = setInterval(() => {
           
@@ -129,17 +130,15 @@ class Game {
       }
 
       addObstacle() {
-        const max = this.ctx.canvas.width - 150;
-        const x = Math.floor(Math.random() * max);
+        const xObstacle = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT)
 
-        this.obstacles.push(new Obstacle(this.ctx, x, -150));
+        this.obstacles.push(new Obstacle(this.ctx, xObstacle, -150));
       }
 
       addFuel() {
-        const max = this.ctx.canvas.width - 120;
-        const x = Math.floor(Math.random() * max);
+        const xFuel = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT)
 
-        this.fuels.push(new Fuel(this.ctx, x, 0));
+        this.fuels.push(new Fuel(this.ctx, xFuel, 0));
       }
 
 

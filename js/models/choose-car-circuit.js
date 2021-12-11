@@ -45,12 +45,11 @@ function carChoosen() {
 
   choosenCar.addEventListener('click', () => {
     let myCar = document.querySelector('.my-car');
-    console.log(myCar);
+    console.log(myCar.getAttribute('src'));
   });
 }
 
-const carToGame = carChoosen();
-/* export const cadenaMayus = str => str.toUpperCase(); */
+/* export const carToGame = carChoosen(); */
 
 
 /* CIRCUIT PANEL SELECTION */
