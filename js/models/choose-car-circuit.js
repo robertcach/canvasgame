@@ -46,7 +46,6 @@ function carChoosen() {
 
   choosenCar.addEventListener('click', () => {
     let myCar = document.querySelector('.my-car');
-    console.log(myCar.getAttribute('id'));
     document.getElementById('canvas').dataset.car = myCar.getAttribute('id')
   });
 }

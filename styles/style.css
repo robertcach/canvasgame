@@ -102,8 +102,6 @@ button.menu-selection img {
 
 
 
-
-
 /* CAR PANEL SELECTION */
 .selection-modal {
   position: absolute;
@@ -215,4 +213,19 @@ button#close-circuit-selection:hover {
   top: -20px;
   right: -15px;
   padding: 8px;
+}
+
+
+/* RESTART BUTTON */
+#restart-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+#restart-section button.display-important {
+  pointer-events: auto;
+  opacity: 1;  
 }

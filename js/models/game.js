@@ -1,7 +1,7 @@
 const OBSTACLE_FRAMES =  120
-const FUELS_FRAMES =  360
+const FUELS_FRAMES =  480
 
-const restartGame = document.getElementById('start-button')
+const canvasButtons= document.getElementById('restart-button');
 
 class Game {
     constructor(ctx) {
@@ -22,8 +22,6 @@ class Game {
 
         this.score = 0;
         
-        console.log(restartGame)
-        
         this.raceBegin = new Audio('/sounds/race-background-sound.mp3');
         this.raceBegin.volume = 0.3;
 
@@ -37,49 +35,48 @@ class Game {
         this.carCrash.volume = 0.2;      
     }
 
-    start() {
-      console.log(this.ctx.canvas.dataset.car)
-      if (!this.intervalId) {
-        this.intervalId = setInterval(() => {
-          
-
-          if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
-            this.addObstacle();
-            this.car.fuel -= 2;
+      start() {
+        if (!this.intervalId) {
+          this.intervalId = setInterval(() => {
             
-            this.obstacleFramesCount = 0 
+
+            if (this.obstacleFramesCount % OBSTACLE_FRAMES === 0) {
+              this.addObstacle();
+              this.car.fuel -= 2;
+              
+              this.obstacleFramesCount = 0 
+            }
+
+            if (this.fuelsFramesCount % FUELS_FRAMES === 0) {
+              this.addFuel();
+
+              this.fuelsFramesCount = 0
+            }
+
+            this.clear()
+
+            this.move()
+
+            this.draw()
+
+            this.whitOutFuel()
+            this.checkCollissions()        
+            
+            this.obstacleFramesCount++
+            this.fuelsFramesCount++
+
+            
+
+            if (this.car.fuel <= 0) {
+              this.gameOver();
+            }
+
+            }, this.fps)
           }
 
-          if (this.fuelsFramesCount % FUELS_FRAMES === 0) {
-            this.addFuel();
-
-            this.fuelsFramesCount = 0
-          }
-
-          this.clear()
-
-          this.move()
-
-          this.draw()
-
-          this.whitOutFuel()
-          this.checkCollissions()        
-          
-          this.obstacleFramesCount++
-          this.fuelsFramesCount++
-
-          
-
-          if (this.car.fuel <= 0) {
-            this.gameOver();
-          }
-
-          }, this.fps)
-        }
-
-        this.raceBegin.currentTime = 0;
-        this.raceBegin.play();
-    }
+          this.raceBegin.currentTime = 0;
+          this.raceBegin.play();
+      }
 
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -177,28 +174,24 @@ class Game {
         
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
-
     
         this.ctx.fillStyle = 'white'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`Game Over! Your final score: ${this.score} ${restartGame}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
-    
+        this.ctx.fillText(`Game Over! Your final score: ${this.score}`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
+
+        canvasButtons.classList.add('display-important')
+        canvasButtons.addEventListener("click", () => location.reload());
+        
+
         this.raceBegin.pause();
         this.driftSound.volume = 0;
         this.ctx.restore();
-
-        
       }
 
       continueGame() {
         this.ctx.save()
-    
-/*         this.ctx.fillStyle = 'white'
-        this.ctx.textAlign = 'center'
-        this.ctx.font = 'bold 25px sans-serif'
-        this.ctx.fillText(`You got more fuel`, this.ctx.canvas.width / 2, this.ctx.canvas.height / 2)
- */
+
         this.car.move()
         this.ctx.restore()  
       }

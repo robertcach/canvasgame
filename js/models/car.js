@@ -70,8 +70,7 @@ class Car {
               this.width,
               this.height,
             )
-
-        /* this.tick++; */
+            
         this.ctx.restore()
     }
 
