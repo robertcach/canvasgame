@@ -1,5 +1,6 @@
 const OBSTACLE_FRAMES =  120
 const FUELS_FRAMES =  480
+const MISSILES_FRAMES =  480
 
 const canvasButtons= document.getElementById('restart-button');
 
@@ -8,17 +9,19 @@ class Game {
         this.ctx = ctx;
         this.carSelection = this.ctx.canvas.dataset.car || 0;
         
-        this.car = new Car(ctx, 575, 1050, );
+        this.car = new Car(ctx, 575, 1050);
         this.background = new Background(ctx);
         this.puntuationBoder = new Puntuation(ctx);
-        this.obstacles = []
-        this.fuels = []
+        this.obstacles = [];
+        this.fuels = [];
+        this.missiles = [];
 
         this.intervalId = undefined
         this.fps = 1000 / 220
 
         this.obstacleFramesCount = 0
         this.fuelsFramesCount = 0
+        this.missileFramesCount = 0
 
         this.score = 0;
         
@@ -53,6 +56,12 @@ class Game {
               this.fuelsFramesCount = 0
             }
 
+            if (this.missileFramesCount % MISSILES_FRAMES === 0) {
+              this.addMissile();
+
+              this.missileFramesCount = 0
+            }
+
             this.clear()
 
             this.move()
@@ -64,8 +73,7 @@ class Game {
             
             this.obstacleFramesCount++
             this.fuelsFramesCount++
-
-            
+            this.missileFramesCount++
 
             if (this.car.fuel <= 0) {
               this.gameOver();
@@ -88,16 +96,22 @@ class Game {
         if (this.obstacles.length < previousObstaclesLength) {
           this.score++
         }
+
+        this.missiles = this.missiles.filter(missile => missile.y - missile.height < 1300)
+
+        
       }
     
       draw() {
         this.background.draw();
         
-        this.obstacles.forEach(obstacle => obstacle.draw());
+        this.missiles.forEach(missile => missile.draw());
         this.fuels.forEach(fuel => fuel.draw());
+        this.obstacles.forEach(obstacle => obstacle.draw());
         this.car.draw();
         this.puntuationBoder.draw();
-        this.drawScore()
+        this.drawScore();
+        this.drawMissile();
       }
 
       drawScore() {
@@ -111,21 +125,35 @@ class Game {
         this.ctx.restore();
       }
 
+      drawMissile() {
+        this.ctx.save();
+    
+        this.ctx.fillStyle = 'black';
+        this.ctx.font = ' bold 32px sans-serif';
+    
+        this.ctx.fillText(`${this.car.missile}`, 1025, 1000);
+    
+        this.ctx.restore();
+      }
+
       move() {
-        this.obstacles.forEach(obstacle => obstacle.move()); 
+        this.missiles.forEach(missile => missile.move());
         this.fuels.forEach(fuel => fuel.move());
+        this.obstacles.forEach(obstacle => obstacle.move());
         this.car.move();
         this.background.move();        
       }
 
       onKeyDown(keyCode) {
-        this.car.onKeyDown(keyCode)
-        this.driftSound.currentTime = 0
+        this.car.onKeyDown(keyCode);
+        this.missiles.forEach(missile => missile.onKeyDownSpace(keyCode));
+        this.driftSound.currentTime = 0;
         this.driftSound.play();
       }
     
       onKeyUp(keyCode) {
-        this.car.onKeyUp(keyCode)
+        this.car.onKeyUp(keyCode);
+        this.missiles.forEach(missile => missile.onKeyUpSpace(keyCode));;
       }
 
       addObstacle() {
@@ -140,6 +168,11 @@ class Game {
         this.fuels.push(new Fuel(this.ctx, xFuel, 0));
       }
 
+      addMissile() {
+        const xMissile = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT);
+
+        this.missiles.push(new Missile(this.ctx, xMissile, -150));
+      }
 
       setupListeners(event) {
         this.car.setupListeners(event)
@@ -147,8 +180,6 @@ class Game {
 
       checkCollissions() {
         const conditionObstacle = this.obstacles.some(obstacle => this.car.collidesWithObstacle(obstacle));
-
-        const conditionFuel = this.fuels.find(fuel => this.car.collidesWithFuel(fuel));
     
         if (conditionObstacle) {
           this.carCrash.currentTime = 0;
@@ -156,15 +187,35 @@ class Game {
           this.gameOver();
         }
 
+        const conditionFuel = this.fuels.find(fuel => this.car.collidesWithFuel(fuel));
+
         if (conditionFuel) {
           this.pickUpFuel.currentTime = 0;
           this.pickUpFuel.play();
-          
 
           this.fuels = this.fuels.filter(fuel => fuel !== conditionFuel)
           this.car.fuel += 10;
+
+          if (this.car.fuel >= 100) {
+            this.car.fuel = 100;
+          }
           this.continueGame();      
         }
+
+        const conditionMissile = this.missiles.find(missile => this.car.collidesWithMissile(missile));
+
+        if (conditionMissile) {
+          this.missiles = this.missiles.filter(missile => missile !== conditionMissile);
+          this.car.missile += 1;
+
+          this.continueGame();      
+        }
+
+        /* const missilesCollidesObstacle = this.obstacles.forEach(obstacle => this.missiles.collidesWithObstacle(obstacle));
+
+        if (missilesCollidesObstacle) {
+          console.log("Hola");   
+        } */
       }
 
       gameOver() {

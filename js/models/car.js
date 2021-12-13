@@ -1,5 +1,5 @@
 class Car {
-    constructor(ctx, x, y, carSelection) {
+    constructor(ctx, x, y) {
         this.ctx = ctx;
 
         this.car = this.ctx.canvas.dataset.car
@@ -28,10 +28,12 @@ class Car {
         this.width = 50;
         this.height = 103;
 
-        this.speed = 3;
+        this.speed = 2;
+        this.turbo = 5;
         this.vx = 0;
         this.vy = 0;
         this.fuel = 100;
+        this.missile = 0;
 
         this.img = new Image();
         
@@ -93,6 +95,7 @@ class Car {
       if (this.y <= 0) {
         this.y = 0;
       }
+      
     }
 
     onKeyDown(keyCode) {
@@ -116,8 +119,6 @@ class Car {
         this.vy = this.speed;
         this.xFrame = 0;
       }
-
-
     }
     
     onKeyUp(keyCode) {
@@ -151,6 +152,19 @@ class Car {
           this.y + this.height > fuel.y &&
           this.x < fuel.x + fuel.width &&
           this.x + this.width > fuel.x 
+        ) {
+          return true
+        }
+    
+        return false
+      }
+
+      collidesWithMissile(missile) {
+        if (
+          this.y < missile.y + missile.height &&
+          this.y + this.height > missile.y &&
+          this.x < missile.x + missile.width &&
+          this.x + this.width > missile.x 
         ) {
           return true
         }
