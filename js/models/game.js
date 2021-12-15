@@ -99,16 +99,19 @@ class Game {
         }
 
         this.missiles = this.missiles.filter(missile => missile.y - missile.height < 1300)
+
+        this.bullets = this.bullets.filter(bullet => bullet.y - bullet.height < 1300)
       }
     
       draw() {
         this.background.draw();
         
         this.missiles.forEach(missile => missile.draw());
-        this.bullets.forEach(missile => missile.draw());
+        
         this.fuels.forEach(fuel => fuel.draw());
         this.obstacles.forEach(obstacle => obstacle.draw());
         this.car.draw();
+        this.bullets.forEach(missile => missile.draw());
         this.puntuationBoder.draw();
         this.drawScore();
         /* this.drawMissile(); */
@@ -153,7 +156,7 @@ class Game {
     
       onKeyUp(keyCode) {
         this.car.onKeyUp(keyCode);
-        this.bullets.forEach(missile => missile.onKeyUpSpace(keyCode));;
+        /* this.bullets.forEach(missile => missile.onKeyUpSpace(keyCode));; */
       }
 
 
@@ -206,18 +209,23 @@ class Game {
         const conditionMissile = this.missiles.find(missile => this.car.collidesWithMissile(missile));
 
         if (conditionMissile) {
-          this.missiles = this.missiles.filter((missile) => {
-            if (missile === conditionMissile) {
-            this.bullets.push(new Missile(this.ctx, this.car.x, 1000));
-            
-          }          
-        });
+         this.missiles = this.missiles.filter(missile => missile !== conditionMissile);
+
+          this.bullets.push(new Missile(this.ctx, this.car.x, 1000));  
+
         }
 
-        /* this.missiles.forEach(missil => {
-          this.obstacles.forEach(obstacle => missil.collidesWithObstacle(obstacle))
-        }) */
+      
 
+        this.bullets.forEach((bullet, bulletIndex) => {
+          this.obstacles.forEach((obstacle, obstacleIndex) => {
+            const collision = bullet.collidesWithObstacle(obstacle);
+            if(collision) {
+              this.bullets.splice(bulletIndex, 1);
+              this.obstacles.splice(obstacleIndex, 1);
+            }
+          })
+        })
       }
 
       

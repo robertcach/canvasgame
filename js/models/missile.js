@@ -65,7 +65,7 @@ class Missile {
           this.y < obstacle.y + obstacle.height &&
           this.y + this.height > obstacle.y &&
           this.x < obstacle.x + obstacle.width &&
-          this.x + this.width > obstacle.x 
+          this.x + this.width > obstacle.x
         ) {
           return true
         }
