@@ -98,6 +98,7 @@ class Car {
       
     }
 
+
     onKeyDown(keyCode) {
       if (keyCode === KEY_RIGHT) {
         this.vx = this.speed;

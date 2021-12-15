@@ -44,6 +44,10 @@ class Missile {
         this.y -= this.vy;
     }
 
+    send() {
+        this.y += this.vy;
+      }
+
     onKeyDownSpace(keyCode) {
         if (keyCode === SPACE_KEY) {
             this.vy += this.speed;

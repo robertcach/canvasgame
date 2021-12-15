@@ -15,6 +15,7 @@ class Game {
         this.obstacles = [];
         this.fuels = [];
         this.missiles = [];
+        this.bullets = [];
 
         this.intervalId = undefined
         this.fps = 1000 / 220
@@ -69,7 +70,7 @@ class Game {
             this.draw()
 
             this.whitOutFuel()
-            this.checkCollissions()        
+            this.checkCollissions() 
             
             this.obstacleFramesCount++
             this.fuelsFramesCount++
@@ -98,20 +99,19 @@ class Game {
         }
 
         this.missiles = this.missiles.filter(missile => missile.y - missile.height < 1300)
-
-        
       }
     
       draw() {
         this.background.draw();
         
         this.missiles.forEach(missile => missile.draw());
+        this.bullets.forEach(missile => missile.draw());
         this.fuels.forEach(fuel => fuel.draw());
         this.obstacles.forEach(obstacle => obstacle.draw());
         this.car.draw();
         this.puntuationBoder.draw();
         this.drawScore();
-        this.drawMissile();
+        /* this.drawMissile(); */
       }
 
       drawScore() {
@@ -125,7 +125,7 @@ class Game {
         this.ctx.restore();
       }
 
-      drawMissile() {
+      /* drawMissile() {
         this.ctx.save();
     
         this.ctx.fillStyle = 'black';
@@ -134,11 +134,12 @@ class Game {
         this.ctx.fillText(`${this.car.missile}`, 1025, 1000);
     
         this.ctx.restore();
-      }
+      } */
 
       move() {
         this.missiles.forEach(missile => missile.move());
         this.fuels.forEach(fuel => fuel.move());
+        this.bullets.forEach(missile => missile.send());
         this.obstacles.forEach(obstacle => obstacle.move());
         this.car.move();
         this.background.move();        
@@ -146,15 +147,15 @@ class Game {
 
       onKeyDown(keyCode) {
         this.car.onKeyDown(keyCode);
-        this.missiles.forEach(missile => missile.onKeyDownSpace(keyCode));
         this.driftSound.currentTime = 0;
         this.driftSound.play();
       }
     
       onKeyUp(keyCode) {
         this.car.onKeyUp(keyCode);
-        this.missiles.forEach(missile => missile.onKeyUpSpace(keyCode));;
+        this.bullets.forEach(missile => missile.onKeyUpSpace(keyCode));;
       }
+
 
       addObstacle() {
         const xObstacle = Math.floor(Math.random() * (MAX_LEFT - MAX_RIGHT + 1) + MAX_RIGHT);
@@ -205,19 +206,21 @@ class Game {
         const conditionMissile = this.missiles.find(missile => this.car.collidesWithMissile(missile));
 
         if (conditionMissile) {
-          this.missiles = this.missiles.filter(missile => missile !== conditionMissile);
-          this.car.missile += 1;
-
-          this.continueGame();      
+          this.missiles = this.missiles.filter((missile) => {
+            if (missile === conditionMissile) {
+            this.bullets.push(new Missile(this.ctx, this.car.x, 1000));
+            
+          }          
+        });
         }
 
-        /* const missilesCollidesObstacle = this.obstacles.forEach(obstacle => this.missiles.collidesWithObstacle(obstacle));
+        /* this.missiles.forEach(missil => {
+          this.obstacles.forEach(obstacle => missil.collidesWithObstacle(obstacle))
+        }) */
 
-        if (missilesCollidesObstacle) {
-          console.log("Hola");   
-        } */
       }
 
+      
       gameOver() {
         clearInterval(this.intervalId)
     
