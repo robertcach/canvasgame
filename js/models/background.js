@@ -1,6 +1,7 @@
 class Background {
     constructor(ctx) {
         this.ctx = ctx;
+        this.circuit = this.ctx.canvas.dataset.background
 
         this.y = 0;
         this.vy = 4
@@ -8,8 +9,18 @@ class Background {
         this.width = this.ctx.canvas.width
         this.height = this.ctx.canvas.height
 
+        this.circuitSelection = [
+            {id: 0,
+            src: '/images/circuits/background-race-0.jpg'
+            },
+            {
+              id: 1,
+              src: '/images/circuits/background-race-1.jpg'
+            }
+          ];
+
         this.img = new Image();
-        this.img.src = '../images/background-race.jpg'
+        this.img.src = this.circuitSelection[this.circuit].src;
 
         this.img.isReady = false
 

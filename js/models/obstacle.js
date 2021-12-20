@@ -5,8 +5,8 @@ class Obstacle {
         this.x = x
         this.y = y
         
-        this.width = 45
-        this.height = 92
+        this.width = 35
+        this.height = 72
 
         this.vy = -3
 

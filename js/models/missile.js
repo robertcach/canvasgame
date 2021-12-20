@@ -5,19 +5,25 @@ class Missile {
         this.x = x;
         this.y = y;
 
-        this.width = 22;
-        this.height = 85;
+        this.width = 34;
+        this.height = 52;
 
         this.speed = 40;
         this.vy = -3;
 
         this.img = new Image();
-        this.img.src = '../images/missile.png'
+        this.img.src = '/images/missile-explosion.png'
         this.img.isReady = false;
 
         this.img.onload = () => {
             this.img.isReady = true
         }
+
+        this.horizontalFrames = 1;
+        this.verticalFrames = 2;
+
+        this.xFrame = 0;
+        this.yFrame = 0;
 
         this.movements = {
             space: false,
@@ -26,16 +32,19 @@ class Missile {
 
     draw() {
         this.ctx.save()
-
-        if (this.img.isReady) {
-            this.ctx.drawImage(
-                this.img,
-                this.x,
-                this.y,
-                this.width,
-                this.height,
+        
+        this.ctx.drawImage(
+            this.img,
+            (this.img.width * this.xFrame) / this.horizontalFrames,
+            (this.img.height * this.yFrame) / this.verticalFrames,
+            this.img.width / this.horizontalFrames,
+            this.img.height / this.verticalFrames,
+            this.x,
+            this.y,
+            this.width,
+            this.height,
             )
-        }
+        
 
         this.ctx.restore()
     }
@@ -67,7 +76,11 @@ class Missile {
           this.x < obstacle.x + obstacle.width &&
           this.x + this.width > obstacle.x
         ) {
-          return true
+        
+        console.log("Boom");
+        this.yFrame = 1;
+        return true
+ 
         }
     
         return false

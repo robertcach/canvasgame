@@ -10,7 +10,7 @@ const prevCar = document.getElementById('left-button-car');
 const nextCar = document.getElementById('right-button-car');
 
 prevCar.onclick = () => {
-  if (countCar > 1) {
+  if (countCar >= 1) {
     countCar = countCar - 1;
     chooseCar();
   }
@@ -57,25 +57,25 @@ carChoosen()
 
 
 /* SLIDES CIRCUIT IMAGES */
-let countCircuit = 1;
+let countCircuit = 0;
 
 function chooseCircuit () {
   const circuitContainer = document.getElementById('circuit');
-  circuitContainer.innerHTML = `<img class="my-circuit" src="/images/circuits/circuit-${countCircuit}.png">`;
+  circuitContainer.innerHTML = `<img class="my-circuit" id="${countCircuit}" src="/images/circuits/circuit-${countCircuit}.png">`;
 }
 
 const prevCircuit = document.getElementById('left-button-circuit');
 const nextCircuit = document.getElementById('right-button-circuit');
 
 prevCircuit.onclick = () => {
-  if (countCircuit > 1) {
+  if (countCircuit > 0) {
     countCircuit = countCircuit - 1;
     chooseCircuit();
   }
 };
 
 nextCircuit.onclick = () => {
-  if (countCircuit < 3) {
+  if (countCircuit < 1) {
     countCircuit = countCircuit + 1;
     chooseCircuit();
   }
@@ -98,3 +98,14 @@ raceButton.addEventListener('click', () => {
 closeCircuitButton.addEventListener('click', () => {
   circuitSelectionPanel.classList.remove('display-panel');
 });
+
+function circuitChossen() {
+  const choosenCircuit = document.querySelector('#circuit');
+
+  choosenCircuit.addEventListener('click', () => {
+    let myCircuit = document.querySelector('.my-circuit');
+    document.getElementById('canvas').dataset.background = myCircuit.getAttribute('id')
+  });
+}
+
+circuitChossen()

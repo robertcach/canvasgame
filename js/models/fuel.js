@@ -5,8 +5,8 @@ class Fuel {
         this.x = x
         this.y = y
         
-        this.width = 30
-        this.height = 36
+        this.width = 25
+        this.height = 30
 
         this.vy = -3
 

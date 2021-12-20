@@ -5,5 +5,5 @@ const KEY_LEFT = 37
 const SPACE_KEY = 32
 
 
-const MAX_LEFT = 300
-const MAX_RIGHT = 850
+const MAX_LEFT = 430
+const MAX_RIGHT = 1075
