@@ -11,7 +11,7 @@ class Obstacle {
         this.vy = -3
 
         this.img = new Image();
-        this.img.src = '/images/cars/osbtacle.png', 
+        this.img.src = './images/cars/osbtacle.png', 
         this.img.isReady = false;
 
         this.img.onload = () => {
