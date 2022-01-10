@@ -11,11 +11,11 @@ class Background {
 
         this.circuitSelection = [
             {id: 0,
-            src: '/images/circuits/background-race-0.jpg'
+            src: './images/circuits/background-race-0.jpg'
             },
             {
               id: 1,
-              src: '/images/circuits/background-race-1.jpg'
+              src: './images/circuits/background-race-1.jpg'
             }
           ];
 
