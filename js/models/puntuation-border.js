@@ -9,7 +9,7 @@ class Puntuation {
         this.height = this.ctx.canvas.height
 
         this.img = new Image();
-        this.img.src = '../images/game-puntuation-border.png'
+        this.img.src = './images/game-puntuation-border.png'
 
         this.img.isReady = false
 
