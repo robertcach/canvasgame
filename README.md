@@ -18,5 +18,5 @@ In this game you can choose between 4 cars and 2 circuits.
 ![Car game](https://github.com/robertcach/canvasgame/blob/master/images/read-me/imagen-2.png)
 
 <p align="center">
-  <img width="200" height="66" src="https://github.com/robertcach/canvasgame/blob/master/images/read-me/start-button.png">
+  <a href="https://robertcach.github.io/canvasgame/" target="_blank"><img width="200" height="66" src="https://github.com/robertcach/canvasgame/blob/master/images/read-me/start-button.png"></a>
 </p>
