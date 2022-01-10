@@ -12,7 +12,7 @@ class Missile {
         this.vy = -3;
 
         this.img = new Image();
-        this.img.src = '/images/missile-explosion.png'
+        this.img.src = './images/missile-explosion.png'
         this.img.isReady = false;
 
         this.img.onload = () => {

@@ -26,22 +26,22 @@ class Game {
 
         this.score = 0;
         
-        this.raceBegin = new Audio('/sounds/race-background-sound.mp3');
+        this.raceBegin = new Audio('./sounds/race-background-sound.mp3');
         this.raceBegin.volume = 0.3;
 
-        this.driftSound = new Audio('/sounds/drift.mp3');
+        this.driftSound = new Audio('./sounds/drift.mp3');
         this.driftSound.volume = 0.2;
 
-        this.pickUpFuel = new Audio('/sounds/pick-up-fuel.wav');
+        this.pickUpFuel = new Audio('./sounds/pick-up-fuel.wav');
         this.pickUpFuel.volume = 0.3;
 
-        this.carCrash = new Audio('/sounds/car-crash.wav');
+        this.carCrash = new Audio('./sounds/car-crash.wav');
         this.carCrash.volume = 0.2;
 
-        this.launchMissile = new Audio('/sounds/launch-missile.mp3');
+        this.launchMissile = new Audio('./sounds/launch-missile.mp3');
         this.launchMissile.volume = 0.4;
 
-        this.finishGame = new Audio('/sounds/game-over.mp3');
+        this.finishGame = new Audio('./sounds/game-over.mp3');
         this.finishGame.volume = 0.4;
     }
 

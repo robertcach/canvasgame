@@ -3,7 +3,7 @@ let countCar = 0;
 
 function chooseCar () {
   const carContainer = document.getElementById('car');
-  carContainer.innerHTML = `<img class="my-car" id="${countCar}" src="/images/cars/car-${countCar}.png">`;
+  carContainer.innerHTML = `<img class="my-car" id="${countCar}" src="./images/cars/car-${countCar}.png">`;
 }
 
 const prevCar = document.getElementById('left-button-car');
@@ -61,7 +61,7 @@ let countCircuit = 0;
 
 function chooseCircuit () {
   const circuitContainer = document.getElementById('circuit');
-  circuitContainer.innerHTML = `<img class="my-circuit" id="${countCircuit}" src="/images/circuits/circuit-${countCircuit}.png">`;
+  circuitContainer.innerHTML = `<img class="my-circuit" id="${countCircuit}" src="./images/circuits/circuit-${countCircuit}.png">`;
 }
 
 const prevCircuit = document.getElementById('left-button-circuit');

@@ -6,19 +6,19 @@ class Car {
       
       this.carSelection = [
         {id: 0,
-        src: '/images/cars/cars-0-sprite.png'
+        src: './images/cars/cars-0-sprite.png'
         },
         {
           id: 1,
-          src: '/images/cars/cars-1-sprite.png'
+          src: './images/cars/cars-1-sprite.png'
         },
         {
           id: 2,
-          src: '/images/cars/cars-2-sprite.png'
+          src: './images/cars/cars-2-sprite.png'
         },
         {
           id: 3,
-          src: '/images/cars/cars-3-sprite.png'
+          src: './images/cars/cars-3-sprite.png'
         }
       ];
 
