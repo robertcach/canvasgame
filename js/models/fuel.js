@@ -11,7 +11,7 @@ class Fuel {
         this.vy = -3
 
         this.img = new Image();
-        this.img.src = '../images/fuel.png',
+        this.img.src = './images/fuel.png',
         this.img.isReady = false;
 
         this.img.onload = () => {
