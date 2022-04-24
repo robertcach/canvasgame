@@ -88,8 +88,8 @@ class Car {
       this.x = MAX_RIGHT;
     }
     
-    if (this.y >= 650) {
-      this.y = 650;
+    if (this.y >= 500) {
+      this.y = 500;
     }
 
     if (this.y <= 0) {

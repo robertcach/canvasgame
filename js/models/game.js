@@ -129,7 +129,7 @@ class Game {
         this.ctx.fillStyle = 'black';
         this.ctx.font = ' bold 28px sans-serif';
     
-        this.ctx.fillText(`${this.score}`, 30, 80);
+        this.ctx.fillText(`${this.score}`, 25, 65);
     
         this.ctx.restore();
       }
@@ -261,6 +261,6 @@ class Game {
         this.ctx.fillStyle = 'black'
         this.ctx.textAlign = 'center'
         this.ctx.font = 'bold 28px sans-serif'
-        this.ctx.fillText(`${this.car.fuel}%`, 1440, 685);
+        this.ctx.fillText(`${this.car.fuel}%`, 900, 550);
       }
 }

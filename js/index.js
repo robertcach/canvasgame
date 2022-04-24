@@ -9,7 +9,10 @@ const ctx = canvas.getContext('2d');
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
     firstCapture.style.display = 'none';
-    canvasBoard.style.display = 'block';
+    canvasBoard.style.display = 'flex';
+    canvasBoard.style.justifyContent = 'center';
+    canvasBoard.style.alignItems = 'center';
+    canvasBoard.style.height = '100vh';
     
     startGame();
   };

@@ -2,6 +2,10 @@ body {
   padding: 0;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  background-image: url('../images/circuits/background-game-race.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 *, *:before, *:after {
@@ -16,28 +20,24 @@ body {
   background-image: url('../images/first-capture/first-image-pageload.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1535px;
-  height: 720px;
+  background-position: center center;
+  width: auto;
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  max-height: 100vh;
   width: auto;
+  padding: 10px 0px;
 }
 
-#game-intro {
-  padding: 10px 0px;
-  margin: auto;
-}
 
 #game-board {
-display: none;
+  display: none;
 }
 
 #canvas {
-  max-height: 100vh;
-  width: auto;
+  border: solid 5px #fff;
 }
 
 #instruccions {
@@ -153,6 +153,8 @@ button#close-car-selection {
   border-radius: 50%;
   font-size: 15px;
   font-weight: 900;
+  height: 50px;
+  width: 50px;
 }
 
 button#close-car-selection:hover {
@@ -215,6 +217,8 @@ button#close-circuit-selection {
   border-radius: 50%;
   font-size: 15px;
   font-weight: 900;
+  height: 50px;
+  width: 50px;
 }
 
 button#close-circuit-selection:hover {
@@ -228,8 +232,8 @@ button#close-circuit-selection:hover {
 #restart-button {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 54%;
+  transform: translate(-50%, -0%);
   opacity: 0;
 }
 
